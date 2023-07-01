@@ -1,0 +1,134 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+*
+{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card{
+    position: relative;
+    width: 600px;
+    height: 350px;
+    /* background-color: #cccccc; */
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    /* border-radius: 20px; */
+    transition: .5s;
+}
+.card .circle{
+    position: absolute;
+    top: 0;
+    left:0;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.card .circle::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #d83133;
+    clip-path: circle(120px at center);
+    transition: .5s;
+}
+.card:hover .circle:before{
+    background: #0065c3;
+    background-color: black;
+    clip-path: circle(400px at center);
+}
+.card img{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 200px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.card:hover img{
+    left: 72%;
+    height: 250px;
+}
+
+.card .content{
+    position: relative;
+    width: 50%;
+    left: 20%;
+    padding: 20px 20px 20px 40px;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.card:hover .content{
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+}
+.card .content h2{
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 2em;
+    line-height: 1em;
+    margin-bottom: 5px;
+}
+.card .content p{
+    color: #fff;
+}
+.button{
+    position: relative;
+    color: #111;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+    font-weight: 700px;
+}
+
+/* Responsive  */
+
+@media (max-width: 991px){
+    .card{
+        width:auto;
+        max-width: 350px;
+        align-items: flex-start;
+    }
+    .card:hover{
+        height: 600px;
+    }
+    .card .content{
+        width:100%;
+        left: 0;
+        padding: 30px;
+    }
+    .card:hover img{
+        top: 70%;
+        left: 60%;
+        height: 300px;
+    }
+    .grid-container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+        margin-left: 5 rem;
+    }
+}

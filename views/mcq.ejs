@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mcq</title>
+
+    <%- include("partials/header/nav.ejs" );%>
+  </head>
+  <body>
+    <%- include("partials/loader/loader.ejs" );%>
+    <form action="/tests/mcq/<%=title%>" method="post">
+      <%questions.forEach(function(question){%>
+      <%if(title.trim().toLowerCase()===question.company.trim().toLowerCase()){%>
+      <label><%=question.text%></label>
+      <% if (question.snippet && question.snippet.trim() !== "") { %>
+      <div class="question-snippet">
+        <% const snippetParts = question.snippet.split(/\r?\n/); %> <% for (let
+        i = 0; i < snippetParts.length; i++) { %>
+        <p><%= snippetParts[i] %></p>
+        <% } %>
+      </div>
+      <% } %>
+      <label
+        ><input
+          type="radio"
+          name="<%=question.number%>"
+          value="<%= question.option1 %>"
+        />
+        <%= question.option1 %>
+      </label>
+      <label
+        ><input
+          type="radio"
+          name="<%=question.number%>"
+          value="<%= question.option2 %>"
+        />
+        <%= question.option2 %>
+      </label>
+      <label
+        ><input
+          type="radio"
+          name="<%=question.number%>"
+          value="<%= question.option3 %>"
+        />
+        <%= question.option3 %>
+      </label>
+      <label
+        ><input
+          type="radio"
+          name="<%=question.number%>"
+          value="<%= question.option4 %>"
+        />
+        <%= question.option4 %>
+      </label>
+      <%}%> <%})%>
+      <button type="submit">submit</button>
+    </form>
+  </body>
+  <style>
+    :root {
+      --clr-neutral-900: hsl(207, 19%, 9%);
+      --clr-neutral-100: hsla(0, 0%, 100%, 0.011);
+      --clr-accent-400: hsl(142, 90%, 60%);
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgb(23, 20, 29);
+      color: #88ff88;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    button {
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+      color: var(--clr-neutral-900);
+      background-color: var(--clr-accent-400);
+      padding: 0.5em 1.25em;
+      border-radius: 0.25rem;
+    }
+    .button:hover,
+    .button:focus {
+      background-color: var(--clr-neutral-100);
+    }
+    .question-snippet {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #212a3e;
+      color: #f97b22;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      height: 150px; /* Set a fixed height for the snippets */
+      overflow: auto; /* Add a scrollbar when the content overflows */
+      line-height: 1.5; /* Adjust the line-height property */
+    }
+    ::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1e1e24;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #f97b22;
+    }
+
+    body::-webkit-scrollbar-thumb {
+      background: hsl(142, 90%, 60%);
+    }
+  </style>
+  <script>
+    let switchedTabs = false;
+
+    // Check if the Page Visibility API is supported by the browser
+    if (document.visibilityState !== undefined) {
+      const handleVisibilityChange = function () {
+        if (document.visibilityState === "hidden") {
+          if (!switchedTabs) {
+            alert("Dont switch Tabs 😠");
+            switchedTabs = true;
+          } else {
+            window.location.href = "/signout";
+          }
+        } else {
+          switchedTabs = false;
+        }
+      };
+
+      // Add event listeners for visibility change
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+
+      // Add a listener for the form submission
+      const form = document.querySelector("form");
+      form.addEventListener("submit", function () {
+        // Remove the event listener once the form is submitted
+        document.removeEventListener(
+          "visibilitychange",
+          handleVisibilityChange
+        );
+      });
+    } else {
+      console.log("Page Visibility API is not supported.");
+    }
+  </script>
+</html>

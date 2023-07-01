@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Your Profile</title>
+  <link href="/css/profile.css" rel="stylesheet" type="text/css" />
+  <%- include("partials/header/nav.ejs" );%>
+</head>
+
+
+
+<body style="background-color: hsl(207, 19%, 9%);">
+  <%- include("partials/loader/loader.ejs" );%>
+  <!-- partial:index.partial.html -->
+  <main id="theme">
+    <section class="top__section">
+      <div class="top__section-header container">
+        <div>
+          <h1 class="title" style="color:hsl(142, 90%, 60%) ;">Hi,<%=name%>
+          </h1>
+          <p class="subtitle">Check you records here</p>
+        </div>
+      </div>
+    </section>
+    <section class="main-section">
+      <div class="container">
+        <h2 style="color:hsl(142, 90%, 60%)">MCQs Attempted</h2>
+        <div class="card__grid">
+
+          <% attempts.forEach(function(attempt){%>
+            <%score=attempt.marks%>
+              <%let color="#e8e230" %>
+                <% if(score < 15) { %>
+                  <% color="#a66037" ; %>
+                    <% } else if(score> 15 && score < 20) { %>
+                        <% color="#b4b4b4" ; %>
+                          <% } %>
+                            <div class="card-overview"
+                              style="background-color: hsl(228, 28%, 20%); display: flex; align-items: center; justify-content: space-between; padding: 10px;">
+                              <div class="title" style="display: flex; align-items: center;">
+                                <img src="<%=attempt.logo%>" alt=""
+                                  style="width: 60px; height: 60px; border-radius: 100%; margin-right: 10px; border: 5px solid whitesmoke;">
+                                <span style="color: hsl(142, 90%, 60%); font-size: 20px;">
+                                  <%=attempt.company%>
+                                </span>
+                              </div>
+                              <div class="number"
+                                style="color: white; display: flex; align-items: center; justify-content: flex-end;">
+                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                <lord-icon src="https://cdn.lordicon.com/kejpvrvr.json"
+                                  colors="primary:<%=color%>,secondary:<%=color%>," trigger="loop"
+                                  style="width: 30px; height: 30px; margin-right: 20px; margin-bottom: 35%;">
+                                </lord-icon>
+                                <span style=" font-size: 20px; margin-bottom: 40%;">
+                                  <%=attempt.marks%>/20
+                                </span>
+                              </div>
+                            </div>
+
+                            <%})%>
+        </div>
+      </div>
+
+
+      <div class="container">
+        <h2 style="color:hsl(142, 90%, 60%)">Coding contests Attempted</h2>
+        <div class="card__grid">
+
+          <% cattempts.forEach(function(cattempt){%>
+            <a href="https://www.hackerrank.com/contests/<%=cattempt.contestCode%>/leaderboard">
+              <div class="card-overview"
+                style="background-color: hsl(228, 28%, 20%); display: flex; align-items: center; justify-content: space-between; padding: 10px;">
+                <div class="title" style="display: flex; align-items: center;">
+                  <img src="<%=cattempt.logo%>" alt=""
+                    style="width: 60px; height: 60px; border-radius: 100%; margin-right: 10px; border: 5px solid whitesmoke;">
+                  <span style="color: hsl(142, 90%, 60%); font-size: 20px;">
+                    <%=cattempt.company%>
+                  </span>
+                </div>
+                <div class="number"
+                  style="color: white; display: flex; align-items: center; justify-content: flex-end;">
+                  <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                  <lord-icon src="https://cdn.lordicon.com/puvaffet.json" colors="primary:#30e849,secondary:#c71f16,"
+                    trigger="loop" style="width: 50px; height: 50px; margin-right: 20px; margin-bottom: 45%;">
+                  </lord-icon>
+                </div>
+              </div>
+            </a>
+            <%})%>
+        </div>
+      </div>
+    </section>
+  </main>
+  <style>
+    .card-overview:hover {
+      box-shadow: 0 0 10px 5px hsl(142, 90%, 60%);
+    }
+  </style>
+  <!-- partial -->
+  <script src="./script.js"></script>
+
+</body>
+
+</html>

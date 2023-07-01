@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gallery</title>
+  
+        <link rel="stylesheet" href="/css/gallery.css">
+
+        <style>
+            /* Styling for the modal overlay */
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.6);
+                display: none;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Styling for the modal content */
+            .modal-content {
+                position: relative;
+                width: 100%;
+                height: 80%;
+                max-width: 800px;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+                text-align: center;
+            }
+
+            .grid-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 20px;
+                margin-left: 5 rem;
+            }
+        </style>
+</head>
+
+<body>
+    <div style="position: relative;right:50%;">
+        <%- include("partials/header/header.ejs" );%>
+        </div>
+    
+    <div class="grid">
+        <% for (let i = 1; i <= 2; i++) { %>
+        <div class="card">
+          <div class="circle"></div>
+          <div class="content">
+            <h2>Learn React</h2>
+            <p>
+              React is a popular JavaScript library for building interactive user
+              interfaces.
+            </p>
+            <!-- Add an onclick event to open the modal overlay -->
+            <a class="button" href="#" onclick="openModal()">Start Here</a>
+          </div>
+          <img src="/images/web-d.png" alt="" />
+        </div>
+        <% } %>
+      </div>
+
+    <!-- Modal overlay -->
+    <div class="modal-overlay" id="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <iframe width="100%" height="90%" src="https://www.youtube.com/embed/4baq00tHfmA" title="Learn React"
+                frameborder="0" allowfullscreen></iframe>
+            <!-- Add an onclick event to close the modal overlay -->
+            <a class="button" href="#" onclick="closeModal()">Close</a>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            // Show the modal overlay
+            document.getElementById("modal").style.display = "flex";
+            // Set the body overflow to hidden to disable scrolling
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            // Hide the modal overlay
+            document.getElementById("modal").style.display = "none";
+            // Set the body overflow to auto to enable scrolling
+            document.body.style.overflow = "auto";
+        }
+    </script>
+</body>
+
+</html>

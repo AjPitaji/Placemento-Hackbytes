@@ -1,0 +1,191 @@
+<div class="preloader" id="preloader">
+  <div
+    class="loadingio-spinner-bean-eater-05g0zq9yhwnk"
+    style="transform: scale(0.5)"
+  >
+    <div class="ldio-kuapxugbur">
+      <div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #13171b; /* Set a background color for the preloader */
+    z-index: 999999; /* Ensure the preloader appears on top of other elements */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1; /* Initial opacity */
+    transition: opacity 2s ease; /* Fade transition */
+  }
+  @keyframes ldio-kuapxugbur-1 {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(-45deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  @keyframes ldio-kuapxugbur-2 {
+    0% {
+      transform: rotate(180deg);
+    }
+    50% {
+      transform: rotate(225deg);
+    }
+    100% {
+      transform: rotate(180deg);
+    }
+  }
+  .ldio-kuapxugbur > div:nth-child(2) {
+    transform: translate(-15px, 0);
+  }
+  .ldio-kuapxugbur > div:nth-child(2) div {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 120px;
+    height: 60px;
+    border-radius: 120px 120px 0 0;
+    background: #1aff00;
+    animation: ldio-kuapxugbur-1 1s linear infinite;
+    transform-origin: 60px 60px;
+  }
+  .ldio-kuapxugbur > div:nth-child(2) div:nth-child(2) {
+    animation: ldio-kuapxugbur-2 1s linear infinite;
+  }
+  .ldio-kuapxugbur > div:nth-child(2) div:nth-child(3) {
+    transform: rotate(-90deg);
+    animation: none;
+  }
+  @keyframes ldio-kuapxugbur-3 {
+    0% {
+      transform: translate(190px, 0);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(70px, 0);
+      opacity: 1;
+    }
+  }
+  .ldio-kuapxugbur > div:nth-child(1) {
+    display: block;
+  }
+  .ldio-kuapxugbur > div:nth-child(1) div {
+    position: absolute;
+    top: 92px;
+    left: -8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #9900ff;
+    animation: ldio-kuapxugbur-3 1s linear infinite;
+  }
+  .ldio-kuapxugbur > div:nth-child(1) div:nth-child(1) {
+    animation-delay: -0.67s;
+  }
+  .ldio-kuapxugbur > div:nth-child(1) div:nth-child(2) {
+    animation-delay: -0.33s;
+  }
+  .ldio-kuapxugbur > div:nth-child(1) div:nth-child(3) {
+    animation-delay: 0s;
+  }
+  .loadingio-spinner-bean-eater-05g0zq9yhwnk {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    overflow: hidden;
+    background: none;
+  }
+  .ldio-kuapxugbur {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
+  }
+  .ldio-kuapxugbur div {
+    box-sizing: content-box;
+  }
+
+  /* Hide the preloader when opacity is 0 */
+  .preloader.hidden {
+    opacity: 0;
+    pointer-events: none; /* Disable interaction with hidden preloader */
+  }
+
+  @keyframes loading {
+    from {
+      transform: rotate(0turn);
+    }
+    to {
+      transform: rotate(1turn);
+    }
+  }
+</style>
+
+<script>
+  function hidePreloader() {
+    var preloader = document.getElementById("preloader");
+    preloader.classList.add("hidden");
+    startAnimation(); // Call the function to start the animation
+  }
+
+  // Function to start the animation
+  function startAnimation() {
+    anime
+      .timeline({ loop: false })
+      .add({
+        targets: ".ml13 .letter",
+        translateY: [100, 0],
+        translateZ: 0,
+        opacity: [0, 1],
+        easing: "easeOutExpo",
+        duration: 1400,
+        delay: (el, i) => 300 + 30 * i,
+      })
+      .add({
+        targets: ".ml13 .letter",
+        // translateY: [0, -100],
+        // opacity: [1, 0],
+        duration: 1200,
+        delay: (el, i) => 100 + 30 * i,
+      });
+  }
+  // Delay before hiding the preloader (in milliseconds)
+  var minDuration = 1000;
+
+  // Function to hide the preloader with a fade-out effect after a certain duration
+  function hidePreloaderWithFade() {
+    setTimeout(function () {
+      hidePreloader();
+    }, minDuration);
+  }
+
+  // Event listener to hide the preloader when the content has finished loading
+  window.addEventListener("load", function () {
+    hidePreloaderWithFade();
+  });
+</script>

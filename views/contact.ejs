@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contact page</title>
+
+    <%- include("partials/header/nav.ejs" );%>
+
+    <link href="/css/contact.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <%- include("partials/loader/loader.ejs" );%>
+    <div class="contact container">
+      <form method="post" action="/contact">
+        <div class="form">
+          <div class="form-txt">
+            <h1>Contact Us</h1>
+            <span
+              >Don't hesitate to reach out to us if you have any questions or
+              concerns. Our team is always happy to help and provide any
+              assistance you may need.</span
+            >
+            <h3>Address</h3>
+            <p>
+              R2FR+6GQ, Potheri, SRM Nagar, Kattankulathur<br />Tamil Nadu
+              603203
+            </p>
+          </div>
+          <div class="form-details">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Name"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+              required
+            />
+            <textarea
+              name="message"
+              id="message"
+              cols="52"
+              rows="7"
+              placeholder="Message"
+              required
+            ></textarea>
+            <button>SEND MESSAGE</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- partial -->
+    <div style="position: absolute; bottom: 60px">
+      <a
+        target="_blank"
+        href="https://api.whatsapp.com/send?phone=7979957904&text=hello world"
+        class="whatsapp-button"
+        ><img
+          src="//i.imgur.com/cAS6qqn.png"
+          alt=""
+          style="transform: scale(0.05)"
+      /></a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Coming soon</title>
+  <%- include("partials/header/nav.ejs" );%>
+
+  <link href="/css/cs.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<%- include("partials/loader/loader.ejs" );%>
+<section class="container">
+  <header>Contests Coming Soon</header>
+  <p>
+    For now we have not prepared contests/questions for Dream and Day Sharing companies
+  </p>
+  <div class="time-content">
+    <div class="time days">
+      <span class="number"></span>
+      <span class="text">days</span>
+    </div>
+    <div class="time hours">
+      <span class="number"></span>
+      <span class="text">hours</span>
+    </div>
+    <div class="time minutes">
+      <span class="number"></span>
+      <span class="text">minutes</span>
+    </div>
+    <div class="time seconds">
+      <span class="number"></span>
+      <span class="text">seconds</span>
+    </div>
+  </div>
+  <div class="email-content">
+    <p>Subscribe now to get the latest updates!</p>
+    <div class="input-box">
+      <input type="email" placeholder="Enter your email..." />
+      <button>Notify Me</button>
+    </div>
+  </div>
+</section>
+<!-- partial -->
+  <script>
+    const seconds = document.querySelector(".seconds .number"),
+  minutes = document.querySelector(".minutes .number"),
+  hours = document.querySelector(".hours .number"),
+  days = document.querySelector(".days .number");
+
+let secValue = 11,
+  minValue = 2,
+  hourValue = 2,
+  dayValue = 40;
+
+const timeFunction = setInterval(() => {
+  secValue--;
+
+  if (secValue === 0) {
+    minValue--;
+    secValue = 60;
+  }
+  if (minValue === 0) {
+    hourValue--;
+    minValue = 60;
+  }
+  if (hourValue === 0) {
+    dayValue--;
+    hourValue = 24;
+  }
+
+  if (dayValue === 0) {
+    clearInterval(timeFunction);
+  }
+  seconds.textContent = secValue < 10 ? `0${secValue}` : secValue;
+  minutes.textContent = minValue < 10 ? `0${minValue}` : minValue;
+  hours.textContent = hourValue < 10 ? `0${hourValue}` : hourValue;
+  days.textContent = dayValue < 10 ? `0${dayValue}` : dayValue;
+}, 1000); //1000ms = 1s
+  </script>
+
+</body>
+</html>

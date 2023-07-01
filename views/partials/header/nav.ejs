@@ -1,0 +1,31 @@
+<div id="content">
+    <div class="small-screen-section">
+      <!-- Content for small screens -->
+      <%- include("header.ejs" );%>
+    </div>
+    <div class="large-screen-section">
+      <!-- Content for large screens -->
+      <%- include("headerl.ejs" );%>
+    </div>
+  </div>
+
+  <style>
+    @media (max-width: 767px) {
+  .small-screen-section {
+    display: block;
+  }
+  .large-screen-section {
+    display: none;
+  }
+}
+
+/* Styles for large screens */
+@media (min-width: 768px) {
+  .small-screen-section {
+    display: none;
+  }
+  .large-screen-section {
+    display: block;
+  }
+}
+  </style>
